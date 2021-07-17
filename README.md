@@ -22,3 +22,17 @@ Secret exists, deleting
 secret "test-aws-ecr-ap-southeast-1" deleted
 secret/test-aws-ecr-ap-southeast-1 created
 ```
+
+### Use the secret on your deployment file
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aws-ecr-registry
+spec:
+  containers:
+  - name: private-service
+    image: mataberat/privateapp:0.0.1
+  imagePullSecrets:
+  - name: test-aws-ecr-ap-southeast-1
+```
